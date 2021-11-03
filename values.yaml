@@ -1,4 +1,3 @@
-tag: ""
 sourceController:
   crd:
     enabled: true
@@ -25,3 +24,15 @@ kustomizeController:
     repository: fluxcd
     name: kustomize-controller
     tag: v0.16.0
+
+gitRepository:
+  enabled: true
+  url: ""
+  branch: ""
+  interval: ""
+  secretName: ""
+
+kustomization:
+  enabled: true
+  path: ""
+  interval: 
