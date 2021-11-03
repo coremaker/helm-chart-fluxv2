@@ -1,0 +1,27 @@
+tag: ""
+sourceController:
+  crd:
+    enabled: true
+  enabled: true
+  image:
+    repository: fluxcd
+    name: source-controller
+    tag: v0.17.1
+
+helmController:
+  crd:
+    enabled: true
+  enabled: true
+  image:
+    repository: fluxcd
+    name: helm-controller
+    tag: v0.12.1
+
+kustomizeController:
+  crd:
+    enabled: true
+  enabled: true
+  image:
+    repository: fluxcd
+    name: kustomize-controller
+    tag: v0.16.0
