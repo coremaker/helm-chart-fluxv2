@@ -27,6 +27,7 @@ kustomizeController:
 
 gitRepository:
   enabled: true
+  namespace: ""
   url: ""
   branch: ""
   interval: ""
@@ -34,5 +35,6 @@ gitRepository:
 
 kustomization:
   enabled: true
+  namespace: ""
   path: ""
   interval: 
