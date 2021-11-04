@@ -22,7 +22,6 @@ kustomizeController:
   crd:
     enabled: true
   enabled: true
-  prune: false
   deploymentName: fluxv2-kustomize-controller
   image:
     repository: fluxcd
@@ -41,4 +40,5 @@ kustomization:
   enabled: true
   namespace: ""
   path: ""
+  prune: false
   interval: 
