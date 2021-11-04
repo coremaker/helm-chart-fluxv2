@@ -10,5 +10,5 @@ spec:
     kind: GitRepository
     name: helm-releases
   path: {{ .Values.kustomization.path }}
-  prune: true
+  prune: {{ .Values.kustomization.prune }}
 {{- end }}
