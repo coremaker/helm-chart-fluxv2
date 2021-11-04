@@ -4,20 +4,20 @@ kind: Deployment
 metadata:
   labels:
     control-plane: controller
-  name: kustomize-controller
+  name: {{ .Values.kustomizeController.deploymentName }}
   namespace: {{.Release.Namespace}}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: kustomize-controller
+      app: {{ .Values.kustomizeController.deploymentName }}
   template:
     metadata:
       annotations:
         prometheus.io/port: "8080"
         prometheus.io/scrape: "true"
       labels:
-        app: kustomize-controller
+        app: {{ .Values.kustomizeController.deploymentName }}
     spec:
       containers:
       - args:

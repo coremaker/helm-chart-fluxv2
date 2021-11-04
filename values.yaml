@@ -2,6 +2,7 @@ sourceController:
   crd:
     enabled: true
   enabled: true
+  deploymentName: fluxv2-source-controller
   image:
     repository: fluxcd
     name: source-controller
@@ -11,6 +12,7 @@ helmController:
   crd:
     enabled: true
   enabled: true
+  deploymentName: fluxv2-helm-controller
   image:
     repository: fluxcd
     name: helm-controller
@@ -20,6 +22,8 @@ kustomizeController:
   crd:
     enabled: true
   enabled: true
+  prune: false
+  deploymentName: fluxv2-kustomize-controller
   image:
     repository: fluxcd
     name: kustomize-controller

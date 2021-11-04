@@ -4,13 +4,13 @@ kind: Deployment
 metadata:
   labels:
     control-plane: controller
-  name: source-controller
+  name: {{ .Values.sourceController.deploymentName }}
   namespace: {{.Release.Namespace}}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: source-controller
+      app: {{ .Values.sourceController.deploymentName }}
   strategy:
     type: Recreate
   template:
@@ -19,7 +19,7 @@ spec:
         prometheus.io/port: "8080"
         prometheus.io/scrape: "true"
       labels:
-        app: source-controller
+        app: {{ .Values.sourceController.deploymentName }}
     spec:
       containers:
       - args:
@@ -28,7 +28,7 @@ spec:
         - --log-encoding=json
         - --enable-leader-election
         - --storage-path=/data
-        - --storage-adv-addr=source-controller.$(RUNTIME_NAMESPACE).svc.cluster.local.
+        - --storage-adv-addr={{ .Values.sourceController.deploymentName }}.$(RUNTIME_NAMESPACE).svc.cluster.local.
         env:
         - name: RUNTIME_NAMESPACE
           valueFrom:
