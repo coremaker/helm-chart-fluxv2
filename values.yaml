@@ -1,6 +1,4 @@
 sourceController:
-  crd:
-    enabled: true
   enabled: true
   deploymentName: fluxv2-source-controller
   image:
@@ -9,8 +7,6 @@ sourceController:
     tag: v0.17.1
 
 helmController:
-  crd:
-    enabled: true
   enabled: true
   deploymentName: fluxv2-helm-controller
   image:
@@ -19,14 +15,20 @@ helmController:
     tag: v0.12.1
 
 kustomizeController:
-  crd:
-    enabled: true
   enabled: true
   deploymentName: fluxv2-kustomize-controller
   image:
     repository: fluxcd
     name: kustomize-controller
     tag: v0.16.0
+
+imageReflectorController:
+  enabled: true
+  deploymentName: fluxv2-image-controller
+  image:
+    repository: fluxcd
+    name: image-reflector-controller
+    tag: v0.13.0
 
 gitRepository:
   enabled: true
