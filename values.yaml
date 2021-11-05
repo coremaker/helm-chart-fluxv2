@@ -29,18 +29,3 @@ imageReflectorController:
     repository: fluxcd
     name: image-reflector-controller
     tag: v0.13.0
-
-gitRepository:
-  enabled: true
-  namespace: ""
-  url: ""
-  branch: ""
-  interval: ""
-  secretName: ""
-
-kustomization:
-  enabled: true
-  namespace: ""
-  path: ""
-  prune: false
-  interval: 
