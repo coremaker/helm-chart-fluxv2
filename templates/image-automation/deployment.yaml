@@ -1,0 +1,69 @@
+{{- if .Values.automationController.enabled -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    control-plane: controller
+  name: {{ .Values.automationController.deploymentName }}
+  namespace: {{.Release.Namespace}}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.automationController.deploymentName }}
+  template:
+    metadata:
+      annotations:
+        prometheus.io/port: "8080"
+        prometheus.io/scrape: "true"
+      labels:
+        app: {{ .Values.automationController.deploymentName }}
+    spec:
+      containers:
+      - args:
+        - --watch-all-namespaces
+        - --log-level=info
+        - --log-encoding=json
+        - --enable-leader-election
+        env:
+        - name: RUNTIME_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        image: {{ .Values.automationController.image.repository }}/{{ .Values.automationController.image.name }}:{{ .Values.automationController.image.tag }}
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: healthz
+        name: manager
+        ports:
+        - containerPort: 8080
+          name: http-prom
+        - containerPort: 9440
+          name: healthz
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: healthz
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 1Gi
+          requests:
+            cpu: 100m
+            memory: 64Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+        volumeMounts:
+        - mountPath: /tmp
+          name: temp
+      securityContext:
+        fsGroup: 1337
+      terminationGracePeriodSeconds: 10
+      volumes:
+      - emptyDir: {}
+        name: temp
+{{- end }}

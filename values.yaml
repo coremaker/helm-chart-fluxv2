@@ -29,3 +29,11 @@ imageReflectorController:
     repository: fluxcd
     name: image-reflector-controller
     tag: v0.13.0
+
+automationController:
+  enabled: true
+  deploymentName: fluxv2-automation-controller
+  image:
+    repository: fluxcd
+    name: image-automation-controller
+    tag: v0.17.0
