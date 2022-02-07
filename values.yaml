@@ -4,7 +4,7 @@ sourceController:
   image:
     repository: fluxcd
     name: source-controller
-    tag: v0.20.1
+    tag: v0.21.2
 
 helmController:
   enabled: true
@@ -12,7 +12,7 @@ helmController:
   image:
     repository: fluxcd
     name: helm-controller
-    tag: v0.15.0
+    tag: v0.16.0
 
 kustomizeController:
   enabled: true
